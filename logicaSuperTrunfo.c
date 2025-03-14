@@ -7,14 +7,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+int main() {
+    // Variáveis para armazenar os dados das cidades
+    char nome1[50], nome2[50];
+    char estado1, estado2;
+    char cod_estado1[4], cod_estado2[4];
+    int populacao1, populacao2;
+    float area1, area2, pib1, pib2, densidade_pop1, densidade_pop2, pib_p1, pib_p2;
+    int p_turistico1, p_turistico2;
+    int opcao_comparacao;
 
-int main (){
-	char estado1, estado2, cod_estado1[4], cod_estado2[4], nome1[20], nome2[20];
-	int populacao1, populacao2, p_turistico1, p_turistico2, cont_carta1, cont_carta2;
-	float area1, area2, pib1, pib2, densidade_pop1, densidade_pop2, pib_p1, pib_p2;
-	
-
-	//inserção de dados da primeira carta
+   //inserção de dados da primeira carta
 	printf ("Insira os dados da primeira carta:\n");
 	printf ("Insira uma letra de A-H para representar o codigo do estado:\n");
 	scanf (" %c", &estado1); //espaço antes da leitura da variavel para consumir o \n da entrada
@@ -54,62 +57,53 @@ int main (){
 	scanf ("%d", &p_turistico2);
 	densidade_pop2 = populacao2 / area2;
 	pib_p2 = pib2 / populacao2;
-	
 
-	//Aplicando um contador para ver quem venceu mais quesitos
-	cont_carta1 = 0;
-	cont_carta2 = 0;
-	
-	
-	//condições para cada situação, caso alguma das cartas ganhe nas condições, é acrescentado ++ no contador da devida carta
-	if (populacao1 > populacao2){
-		cont_carta1++;
-	}else{
-		cont_carta2++;
-	}
-	
-	if (area1 > area2){
-		cont_carta1++;
-	}else{
-		cont_carta2++;
-	}
-	
-	if (pib1 > pib2){
-		cont_carta1++;
-	}else{
-		cont_carta2++;
-	}
-	
-	if (densidade_pop1 > densidade_pop2){
-		cont_carta1++;
-	}else{
-		cont_carta2++;
-	}
-	
-	if (pib_p1 > pib_p2){
-		cont_carta1++;
-	}else{
-		cont_carta2++;
-	}
-	
-	if (densidade_pop1 < densidade_pop2){
-		cont_carta1++;
-	}else{
-		cont_carta2++;
-	}
-	
-	//condição para ver qual a carta ganhadora e ver se existe um empate entre as cartas
-	if (cont_carta1 == cont_carta2){
-		printf ("As cidades empataram!\n");
-	}else{
-		if (cont_carta1 > cont_carta2){
-			printf ("A carta 1: Cidade de %s ganhou!\n", nome1);
-		}else{
-			printf ("A carta 2: Cidade de %s ganhou!\n", nome2);
-		}
-	}
-	
-	
-	return 1;
-	
+    // Menu de comparação
+    printf("Escolha o atributo para comparação:\n");
+    printf("1. Populacao\n2. Area\n3. PIB\n4. Pontos turisticos\n");
+    scanf("%d", &opcao_comparacao);
+
+    // Comparação das cidades
+    switch (opcao_comparacao) {
+        case 1: // Comparar população
+            if (populacao1 > populacao2) {
+                printf("A cidade %s venceu com a maior populacao.\n", nome1);
+            } else if (populacao1 < populacao2) {
+                printf("A cidade %s venceu com a maior populacao.\n", nome2);
+            } else {
+                printf("As cidades tem a mesma população.\n");
+            }
+            break;
+        case 2: // Comparar área
+            if (area1 > area2) {
+                printf("A cidade %s venceu com a maior area.\n", nome1);
+            } else if (area1 < area2) {
+                printf("A cidade %s venceu com a maior area.\n", nome2);
+            } else {
+                printf("As cidades tem a mesma area.\n");
+            }
+            break;
+        case 3: // Comparar PIB
+            if (pib1 > pib2) {
+                printf("A cidade %s venceu com o maior PIB.\n", nome1);
+            } else if (pib1 < pib2) {
+                printf("A cidade %s venceu com o maior PIB.\n", nome2);
+            } else {
+                printf("As cidades tem o mesmo PIB.\n");
+            }
+            break;
+        case 4: // Comparar pontos turísticos
+            if (p_turistico1 > p_turistico2) {
+                printf("A cidade %s venceu com o maior numero de pontos turisticos.\n", nome1);
+            } else if (p_turistico1 < p_turistico2) {
+                printf("A cidade %s venceu com o maior numero de pontos turisticos.\n", nome2);
+            } else {
+                printf("As cidades tem o mesmo numero de pontos turisticos.\n");
+            }
+            break;
+        default:
+            printf("Opcao invalida!\n");
+    }
+
+    return 0;
 }
